@@ -33,19 +33,24 @@ class Instance:
         # Main loop
         self.add_main_loop()
 
+    # settings
+
+    # starts
     def add_main_loop(self):
         self.master.mainloop()
 
+    # master setting
     def settings(self):
         ws = self.master.winfo_screenwidth()
         hs = self.master.winfo_screenheight()
 
-        x = (ws // 2) - (800 // 2)
+        x = (ws // 2) - (1000 // 2)
         y = (hs // 2) - (800 // 2)
         self.master.geometry("1000x800+" + str(x) + "+" + str(y))
         self.master.resizable(0, 0)
         self.master.config(bg="#afafaf")
 
+    # setting the frames
     def frames(self):
         self.square_frame = tk.Frame(self.master, width=640, height=640, bg="white")
         self.square_frame.pack(padx=50, pady=30)
@@ -53,6 +58,7 @@ class Instance:
         self.bot_frame = tk.Frame(self.master, width=1200, height=100, bg="#afafaf")
         self.bot_frame.pack()
 
+    # sets all the labels, entry, and buttons
     def asking(self):
 
         self.title = tk.Label(self.bot_frame, text=hex(self.default_value), bg="#afafaf")
@@ -73,6 +79,8 @@ class Instance:
         self.random_button.grid(row=2, column=6, pady=10)
 
     # actions
+
+    # takes the value and tries to make a pattern out of it
     def submit_action(self):
         try:
             self.canvas.delete(tk.ALL)
@@ -86,14 +94,17 @@ class Instance:
             self.squares()
             self.clear_action()
 
+    # deletes the text in the Entry
     def clear_action(self):
         self.key.delete(0, tk.END)
 
+    # randomizes the pattern
     def random_action(self):
         self.value = int(rd.randint(0, self.BIGGEST+1))
         self.title.config(text=hex(self.value))
         self.squares()
 
+    # sets all the squares
     def squares(self):
         for i in range(0, 8):
             for j in range(0, 8):
