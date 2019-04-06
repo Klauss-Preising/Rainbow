@@ -1,4 +1,5 @@
 import tkinter as tk
+import random as rd
 
 
 class Instance:
@@ -11,9 +12,9 @@ class Instance:
         self.keyLabel = None
         self.submit = None
         self.clear = None
-        self.BIGGEST = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-
+        self.random_button = None
         self.title = ""
+        self.BIGGEST = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         self.default_value = 0xfedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210
         self.value = self.default_value
         self.colors = ["red", "orange red", "orange", "yellow",
@@ -68,6 +69,8 @@ class Instance:
         self.clear = tk.Button(self.bot_frame, text="Clear", command=self.clear_action, bg="grey")
         self.clear.grid(row=2, column=5, pady=10)
 
+        self.random_button = tk.Button(self.bot_frame, text="Random", command=self.random_action, bg="grey")
+        self.random_button.grid(row=2, column=6, pady=10)
 
     # actions
     def submit_action(self):
@@ -78,19 +81,24 @@ class Instance:
             self.squares()
             self.clear_action()
         except Exception:
+            self.value = self.default_value
+            self.title.config(text=hex(self.value))
+            self.squares()
             self.clear_action()
 
     def clear_action(self):
         self.key.delete(0, tk.END)
-        self.value = self.default_value
+
+    def random_action(self):
+        self.value = int(rd.randint(0, self.BIGGEST+1))
+        self.title.config(text=hex(self.value))
+        self.squares()
 
     def squares(self):
         for i in range(0, 8):
             for j in range(0, 8):
                 self.canvas.create_rectangle(i*80, j*80, i*80+80, j*80+80, fill=self.colors[self.value % 16])
                 self.value //= 16
-
-
 
 
 if __name__ == '__main__':
