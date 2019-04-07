@@ -100,6 +100,7 @@ class Instance:
 
     # randomizes the pattern
     def random_action(self):
+        self.canvas.delete(tk.ALL)
         self.value = int(rd.randint(0, self.BIGGEST+1))
         self.title.config(text=hex(self.value))
         self.squares()
