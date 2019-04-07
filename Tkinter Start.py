@@ -108,7 +108,7 @@ class Instance:
     def squares(self):
         for i in range(0, 8):
             for j in range(0, 8):
-                self.canvas.create_rectangle(i*80, j*80, i*80+80, j*80+80, fill=self.colors[self.value % 16])
+                self.canvas.create_rectangle(j*80, i*80, j*80+80, i*80+80, fill=self.colors[self.value % 16])
                 self.value //= 16
 
 
