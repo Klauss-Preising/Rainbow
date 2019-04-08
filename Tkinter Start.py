@@ -17,10 +17,10 @@ class Instance:
         self.BIGGEST = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         self.default_value = 0xfedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210
         self.value = self.default_value
-        self.colors = ["#FF0000", "#ff4900", "#ff9700", "#fff700",
-                       "#aeff00", "#3eff00", "#00ff32", "#00ff97",
-                       "#00f7ff", "#00aeff", "#0046ff", "#2a00ff", "#8b00ff",
-                       "#cd00ff", "#ff00e4", "#ff0061"]
+        self.colors = ['#FF0000', '#FF4900', '#FF9700', '#FFF700',
+                       '#AEFF00', '#3EFF00', '#00FF32', '#00FF97',
+                       '#00F7FF', '#00AEFF', '#0046FF', '#2A00FF',
+                       '#8B00FF', '#CD00FF', '#FF00E4', '#FF0061']
 
         # Starting
         self.settings()
