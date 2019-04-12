@@ -122,7 +122,6 @@ class Instance:
         return str([hex(i) for i in self.values])
 
 
-
 if __name__ == '__main__':
     root = Instance(tk.Tk())
     print(root)
