@@ -16,11 +16,15 @@ class Instance:
         self.title = ""
         self.BIGGEST = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         self.default_value = 0xfedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210
+
         self.value = self.default_value
+        self.values = []
+
         self.colors = ['#FF0000', '#FF4900', '#FF9700', '#FFF700',
                        '#AEFF00', '#3EFF00', '#00FF32', '#00FF97',
                        '#00F7FF', '#00AEFF', '#0046FF', '#2A00FF',
                        '#8B00FF', '#CD00FF', '#FF00E4', '#FF0061']
+
 
         # Starting
         self.settings()
@@ -82,8 +86,8 @@ class Instance:
 
     # takes the value and tries to make a pattern out of it
     def submit_action(self):
+        self.canvas.delete(tk.ALL)
         try:
-            self.canvas.delete(tk.ALL)
             self.value = int(self.key.get().strip(), base=16)
             self.title.config(text=hex(self.value))
             self.squares()
@@ -108,11 +112,17 @@ class Instance:
     # sets all the squares
     def squares(self):
         temp = self.value
+        self.values.append(self.value)
         for i in range(8):
             for j in range(8):
                 self.canvas.create_rectangle(j*80, i*80, j*80+80, i*80+80, fill=self.colors[temp % 16])
                 temp //= 16
 
+    def __str__(self):
+        return str([hex(i) for i in self.values])
+
+
 
 if __name__ == '__main__':
     root = Instance(tk.Tk())
+    print(root)
